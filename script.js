@@ -9,7 +9,7 @@ inputField.addEventListener("input", async () => {
   }
 
   try {
-    const response = await fetch("contry.csv"); // Assuming the CSV file is served from this endpoint
+    const response = await fetch("contry.csv"); 
     if (!response.ok) {
       throw new Error(`Failed to fetch CSV file: ${response.statusText}`);
     }
@@ -23,7 +23,7 @@ inputField.addEventListener("input", async () => {
         console.log("Invalid item:", item);
         return false;
       }
-      return item.country.toLowerCase().startsWith(partialCountryName); // Changed condition here
+      return item.country.toLowerCase().startsWith(partialCountryName); 
     });
 
     displaySuggestions(filteredData);
@@ -33,7 +33,7 @@ inputField.addEventListener("input", async () => {
 });
 
 function parseCSV(text) {
-  const lines = text.split('\n').map(line => line.trim()).filter(line => line); // Filter out empty lines
+  const lines = text.split('\n').map(line => line.trim()).filter(line => line); 
   const headers = lines[0].split(',').map(header => header.trim());
 
   const data = [];
@@ -41,7 +41,7 @@ function parseCSV(text) {
     const values = lines[i].split(',');
     if (values.length !== headers.length) {
       console.error('Invalid row:', lines[i]); // Log invalid rows
-      continue; // Skip rows with invalid structure
+      continue; 
     }
     const item = {};
     for (let j = 0; j < headers.length; j++) {
@@ -54,7 +54,7 @@ function parseCSV(text) {
 
 function displaySuggestions(suggestions) {
   suggestionsList.innerHTML = "";
-  suggestions.forEach(({ country, capital }) => { // Changed property names to lowercase
+  suggestions.forEach(({ country, capital }) => { 
     const listItem = document.createElement("li");
     listItem.textContent = `${country} - ${capital}`;
     listItem.addEventListener("click", () => {
